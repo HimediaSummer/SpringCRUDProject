@@ -18,7 +18,7 @@
         <result property="refCategoryCode" column="ref_category_code"/>
     </resultMap>
 
-    <select>
+    <select id="findAllMenu" resultMap="menuResultMap">
         SELECT
             menu_code,
             menu_name,
@@ -33,7 +33,7 @@
             menu_code
     </select>
 
-    <select>
+    <select id="findAllCategory" resultMap="categoryResultMap">
         SELECT
             category_code,
             category_name,

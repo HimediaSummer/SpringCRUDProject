@@ -31,6 +31,7 @@ public class MenuController {
 
     }
 
+    @GetMapping("/list")
     public String findMenuList(Model model) {
 
         List<MenuDTO> menuList = menuService.findAllMenu();
@@ -40,8 +41,11 @@ public class MenuController {
         return "menu/list";
     }
 
+    @GetMapping("regist")
     public void registPage() {}
 
+    @GetMapping(value = "category", produces = "application/json; charset=UTF-8")
+    @ResponseBody
     public List<CategoryDTO> findCategoryList() {
         System.out.println("JavaScript 내장 함수인 fetch");
         return menuService.findAllCategory();
