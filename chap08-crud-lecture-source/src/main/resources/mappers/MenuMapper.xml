@@ -18,4 +18,78 @@
         <result property="refCategoryCode" column="ref_category_code"/>
     </resultMap>
 
+    <select>
+        SELECT
+        menu_code,
+        menu_name,
+        menu_price,
+        category_code,
+        orderable_status
+        FROM
+        tbl_menu
+        WHERE
+        orderable_status = 'Y'
+        ORDER BY
+        menu_code
+    </select>
+
+    <select>
+        SELECT
+        category_code,
+        category_name,
+        ref_category_code
+        FROM
+        tbl_category
+    </select>
+
+    <select>
+        SELECT
+        menu_code,
+        menu_name,
+        menu_price,
+        category_code,
+        orderable_status
+        FROM
+        tbl_menu
+        WHERE
+        menu_code = #{code}
+    </select>
+
+    <insert>
+        INSERT INTO
+        tbl_menu
+        (
+        menu_name,
+        menu_price,
+        category_code,
+        orderable_status
+        )
+        VALUES
+        (
+        #{name},
+        #{price},
+        #{categoryCode},
+        #{orderableStatus}
+        )
+    </insert>
+
+    <update id="updateMenu" parameterType="com.ohgiraffers.crud.menu.model.dto.MenuDTO">
+        UPDATE tbl_menu
+        SET
+        menu_name = #{name},
+        menu_price = #{price},
+        category_code = #{categoryCode},
+        orderable_status = #{orderableStatus}
+        WHERE
+        menu_code = #{code}
+    </update>
+
+    <delete>
+        DELETE
+        FROM
+        tbl_menu
+        WHERE
+        menu_code = #{code}
+    </delete>
+
 </mapper>
