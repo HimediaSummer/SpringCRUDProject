@@ -31,6 +31,7 @@ public class MenuController {
 
     }
 
+    @GetMapping("/list")
     public String findMenuList(Model model) {
 
         List<MenuDTO> menuList = menuService.findAllMenu();
@@ -69,20 +70,25 @@ public class MenuController {
         return "menu/detail";
     }
 
-    public String showEditMenuForm() {
+    @GetMapping("/edit/{code}")
+    public String showEditMenuForm(@PathVariable("code") int code,
+                                   Model model) {
 
         MenuDTO menu = menuService.findMenuByCode(code);
 
         model.addAttribute("menu", menu);
 
+        return "menu/edit";
     }
 
-    public String updateMenu() {
+    @PostMapping("/update")
+    public String updateMenu(MenuDTO menu, RedirectAttributes rAttr) {
 
         menuService.updateMenu(menu);
 
         rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 수정되었습니다.");
 
+        return "redirect:/menu/detail/" + menu.getCode();
     }
 
     public String deleteMenu() {
