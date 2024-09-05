@@ -58,12 +58,15 @@ public class MenuController {
 
     }
 
-    public String findMenuDetail() {
+    @GetMapping("/detail/{code}")
+    public String findMenuDetail(@PathVariable("code") int code,
+                                 Model model) {
 
         MenuDTO menu = menuService.findMenuByCode(code);
 
         model.addAttribute("menu", menu);
 
+        return "menu/detail";
     }
 
     public String showEditMenuForm() {

@@ -42,7 +42,7 @@
             tbl_category
     </select>
 
-    <select>
+    <select id="findMenuByCode" parameterType="int" resultMap="menuResultMap">
         SELECT
             menu_code,
             menu_name,
