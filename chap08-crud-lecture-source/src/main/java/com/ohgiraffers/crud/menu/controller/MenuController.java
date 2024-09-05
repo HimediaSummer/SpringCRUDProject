@@ -24,6 +24,7 @@ public class MenuController {
     private final MenuService menuService;
     private final MessageSource messageSource;
 
+    @Autowired
     public MenuController(MenuService menuService, MessageSource messageSource) {
 
         this.menuService = menuService;
@@ -31,6 +32,7 @@ public class MenuController {
 
     }
 
+    @GetMapping("/list")
     public String findMenuList(Model model) {
 
         List<MenuDTO> menuList = menuService.findAllMenu();
@@ -82,11 +84,14 @@ public class MenuController {
 
     }
 
-    public String deleteMenu() {
+    @PostMapping("/delete/{code}")
+    public String deleteMenu(@PathVariable("code") int code,
+                             RedirectAttributes rAttr) {
 
         menuService.deleteMenu(code);
 
         rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 삭제되었습니다.");
 
+        return "redirect:/menu/list";
     }
 }

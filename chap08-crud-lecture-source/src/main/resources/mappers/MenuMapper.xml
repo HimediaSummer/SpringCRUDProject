@@ -84,7 +84,7 @@
             menu_code = #{code}
     </update>
 
-    <delete>
+    <delete id="deleteMenu" parameterType="int">
         DELETE
         FROM
             tbl_menu
