@@ -20,77 +20,77 @@
 
     <select id="findAllMenu" resultMap="menuResultMap">
         SELECT
-            menu_code,
-            menu_name,
-            menu_price,
-            category_code,
-            orderable_status
+        menu_code,
+        menu_name,
+        menu_price,
+        category_code,
+        orderable_status
         FROM
-            tbl_menu
+        tbl_menu
         WHERE
-            orderable_status = 'Y'
+        orderable_status = 'Y'
         ORDER BY
-            menu_code
+        menu_code
     </select>
 
     <select id="findAllCategory" resultMap="categoryResultMap">
         SELECT
-            category_code,
-            category_name,
-            ref_category_code
+        category_code,
+        category_name,
+        ref_category_code
         FROM
-            tbl_category
+        tbl_category
     </select>
 
     <select id="findMenuByCode" parameterType="int" resultMap="menuResultMap">
         SELECT
-            menu_code,
-            menu_name,
-            menu_price,
-            category_code,
-            orderable_status
+        menu_code,
+        menu_name,
+        menu_price,
+        category_code,
+        orderable_status
         FROM
-            tbl_menu
+        tbl_menu
         WHERE
-            menu_code = #{code}
+        menu_code = #{code}
     </select>
 
     <insert id="registNewMenu" parameterType="com.ohgiraffers.crud.menu.model.dto.MenuDTO"
             useGeneratedKeys="true" keyProperty="code">
         INSERT INTO
-            tbl_menu
+        tbl_menu
         (
-            menu_name,
-            menu_price,
-            category_code,
-            orderable_status
+        menu_name,
+        menu_price,
+        category_code,
+        orderable_status
         )
         VALUES
         (
-            #{name},
-            #{price},
-            #{categoryCode},
-            #{orderableStatus}
+        #{name},
+        #{price},
+        #{categoryCode},
+        #{orderableStatus}
         )
     </insert>
 
     <update id="updateMenu" parameterType="com.ohgiraffers.crud.menu.model.dto.MenuDTO">
         UPDATE tbl_menu
         SET
-            menu_name = #{name},
-            menu_price = #{price},
-            category_code = #{categoryCode},
-            orderable_status = #{orderableStatus}
+        menu_name = #{name},
+        menu_price = #{price},
+        category_code = #{categoryCode},
+        orderable_status = #{orderableStatus}
         WHERE
-            menu_code = #{code}
+        menu_code = #{code}
     </update>
 
     <delete id="deleteMenu" parameterType="int">
         DELETE
         FROM
-            tbl_menu
+        tbl_menu
         WHERE
-            menu_code = #{code}
+        menu_code = #{code}
     </delete>
 
 </mapper>
