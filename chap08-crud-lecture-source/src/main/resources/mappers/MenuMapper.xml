@@ -18,7 +18,7 @@
         <result property="refCategoryCode" column="ref_category_code"/>
     </resultMap>
 
-    <select>
+    <select id="findAllMenu" resultMap="menuResultMap">
         SELECT
             menu_code,
             menu_name,
@@ -33,7 +33,7 @@
             menu_code
     </select>
 
-    <select>
+    <select id="findAllCategory" resultMap="categoryResultMap">
         SELECT
             category_code,
             category_name,
@@ -42,7 +42,7 @@
             tbl_category
     </select>
 
-    <select>
+    <select id="findMenuByCode" parameterType="int" resultMap="menuResultMap">
         SELECT
             menu_code,
             menu_name,
@@ -55,7 +55,8 @@
             menu_code = #{code}
     </select>
 
-    <insert>
+    <insert id="registNewMenu" parameterType="com.ohgiraffers.crud.menu.model.dto.MenuDTO"
+            useGeneratedKeys="true" keyProperty="code">
         INSERT INTO
             tbl_menu
         (
@@ -73,7 +74,7 @@
         )
     </insert>
 
-    <update>
+    <update id="updateMenu" parameterType="com.ohgiraffers.crud.menu.model.dto.MenuDTO">
         UPDATE tbl_menu
         SET
             menu_name = #{name},
@@ -84,7 +85,7 @@
             menu_code = #{code}
     </update>
 
-    <delete>
+    <delete id="deleteMenu" parameterType="int">
         DELETE
         FROM
             tbl_menu

@@ -24,6 +24,7 @@ public class MenuController {
     private final MenuService menuService;
     private final MessageSource messageSource;
 
+    @Autowired
     public MenuController(MenuService menuService, MessageSource messageSource) {
 
         this.menuService = menuService;
@@ -31,6 +32,7 @@ public class MenuController {
 
     }
 
+    @GetMapping("/list")
     public String findMenuList(Model model) {
 
         List<MenuDTO> menuList = menuService.findAllMenu();
@@ -40,14 +42,18 @@ public class MenuController {
         return "menu/list";
     }
 
+    @GetMapping("regist")
     public void registPage() {}
 
+    @GetMapping(value="category", produces = "application/json; charset=UTF-8")
+    @ResponseBody
     public List<CategoryDTO> findCategoryList() {
         System.out.println("JavaScript 내장 함수인 fetch");
         return menuService.findAllCategory();
     }
 
-    public String registMenu() {
+    @PostMapping("regist")
+    public String registMenu(MenuDTO newMenu, RedirectAttributes rAttr, Locale locale) {
 
         menuService.registNewMenu(newMenu);
 
@@ -56,37 +62,51 @@ public class MenuController {
 //        rAttr.addFlashAttribute("successMessage", "신규 메뉴 등록에 성공하셨습니다.");
         rAttr.addFlashAttribute("successMessage", messageSource.getMessage("registMenu", null, locale));
 
+        return "redirect:/menu/list";
     }
 
-    public String findMenuDetail() {
+    @GetMapping("/detail/{code}")
+    public String findMenuDetail(@PathVariable("code") int code,
+                                 Model model) {
 
         MenuDTO menu = menuService.findMenuByCode(code);
 
         model.addAttribute("menu", menu);
 
+        return "menu/detail";
+
     }
 
-    public String showEditMenuForm() {
+    @GetMapping("/edit/{code}")
+    public String showEditMenuForm(@PathVariable("code") int code,
+                                   Model model) {
 
         MenuDTO menu = menuService.findMenuByCode(code);
 
         model.addAttribute("menu", menu);
 
+        return "menu/edit";
+
     }
 
-    public String updateMenu() {
+    @PostMapping("/update")
+    public String updateMenu(MenuDTO menu, RedirectAttributes rAttr) {
 
         menuService.updateMenu(menu);
 
         rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 수정되었습니다.");
 
+        return "redirect:/menu/detail" + menu.getCode();
     }
 
-    public String deleteMenu() {
+    @PostMapping("/delete/{code}")
+    public String deleteMenu(@PathVariable ("code") int code,
+                            RedirectAttributes rAttr) {
 
         menuService.deleteMenu(code);
 
         rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 삭제되었습니다.");
 
+        return "redirect:/menu/list";
     }
 }
