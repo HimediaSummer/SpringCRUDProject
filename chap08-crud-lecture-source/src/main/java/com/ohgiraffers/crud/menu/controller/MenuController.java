@@ -67,7 +67,7 @@ public class MenuController {
         return "redirect:/menu/list";
     }
 
-    //메뉴 상세조회 완료
+    //메뉴 상세조회 완료(테스트)
     @GetMapping("/detail/{code}")
     public String findMenuDetail(@PathVariable("code") int code,
                                  Model model) {
