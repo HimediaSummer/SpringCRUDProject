@@ -95,6 +95,7 @@ public class MenuController {
 
         rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 수정되었습니다.");
 
+        // 테스트 주석
         return "redirect:/menu/detail" + menu.getCode();
     }
 
