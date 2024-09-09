@@ -45,11 +45,7 @@ public class MenuController {
     @GetMapping("regist")
     public void registPage() {}
 
-<<<<<<< HEAD
-    @GetMapping(value="category", produces = "application/json; charset=UTF-8")
-=======
     @GetMapping(value = "category", produces = "application/json; charset=UTF-8")
->>>>>>> main
     @ResponseBody
     public List<CategoryDTO> findCategoryList() {
         System.out.println("JavaScript 내장 함수인 fetch");
@@ -78,10 +74,6 @@ public class MenuController {
         model.addAttribute("menu", menu);
 
         return "menu/detail";
-<<<<<<< HEAD
-
-=======
->>>>>>> main
     }
 
     @GetMapping("/edit/{code}")
@@ -93,10 +85,6 @@ public class MenuController {
         model.addAttribute("menu", menu);
 
         return "menu/edit";
-<<<<<<< HEAD
-
-=======
->>>>>>> main
     }
 
     @PostMapping("/update")
@@ -106,21 +94,12 @@ public class MenuController {
 
         rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 수정되었습니다.");
 
-<<<<<<< HEAD
-        return "redirect:/menu/detail" + menu.getCode();
-    }
-
-    @PostMapping("/delete/{code}")
-    public String deleteMenu(@PathVariable ("code") int code,
-                            RedirectAttributes rAttr) {
-=======
         return "redirect:/menu/detail/" + menu.getCode();
     }
 
     @PostMapping("/delete/{code}")
     public String deleteMenu(@PathVariable("code") int code,
                              RedirectAttributes rAttr) {
->>>>>>> main
 
         menuService.deleteMenu(code);
 
