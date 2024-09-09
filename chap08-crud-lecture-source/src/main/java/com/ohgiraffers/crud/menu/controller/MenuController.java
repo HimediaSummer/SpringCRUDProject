@@ -105,7 +105,7 @@ public class MenuController {
 
         menuService.deleteMenu(code);
 
-        rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 삭제되었습니다.");
+       rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 삭제되었습니다.");
 
         return "redirect:/menu/list";
     }
