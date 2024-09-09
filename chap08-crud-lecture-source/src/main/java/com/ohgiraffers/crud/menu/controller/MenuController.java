@@ -32,6 +32,7 @@ public class MenuController {
 
     }
 
+    // 메뉴 리스트
     @GetMapping("/list")
     public String findMenuList(Model model) {
 
@@ -42,6 +43,7 @@ public class MenuController {
         return "menu/list";
     }
 
+    // 메뉴 리스트
     @GetMapping("regist")
     public void registPage() {}
 
@@ -65,6 +67,7 @@ public class MenuController {
         return "redirect:/menu/list";
     }
 
+    //메뉴 상세조회 완료(테스트)
     @GetMapping("/detail/{code}")
     public String findMenuDetail(@PathVariable("code") int code,
                                  Model model) {
@@ -94,11 +97,12 @@ public class MenuController {
 
         rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 수정되었습니다.");
 
+        // 테스트 주석
         return "redirect:/menu/detail" + menu.getCode();
     }
 
 
-//    test delete
+//    삭제 테스트
     @PostMapping("/delete/{code}")
     public String deleteMenu(@PathVariable ("code") int code,
                             RedirectAttributes rAttr) {
