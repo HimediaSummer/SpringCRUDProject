@@ -43,7 +43,7 @@ public class MenuController {
         return "menu/list";
     }
 
-    // 메뉴 리스트
+    // Create 또는 Insert 부분
     @GetMapping("regist")
     public void registPage() {}
 
@@ -64,6 +64,7 @@ public class MenuController {
 //        rAttr.addFlashAttribute("successMessage", "신규 메뉴 등록에 성공하셨습니다.");
         rAttr.addFlashAttribute("successMessage", messageSource.getMessage("registMenu", null, locale));
 
+        // Create 또는 Insert 부문 테스트 완료
         return "redirect:/menu/list";
     }
 
