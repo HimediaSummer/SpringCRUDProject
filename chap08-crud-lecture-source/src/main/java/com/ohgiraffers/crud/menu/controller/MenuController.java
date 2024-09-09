@@ -47,7 +47,7 @@ public class MenuController {
     @GetMapping("regist")
     public void registPage() {}
 
-    @GetMapping(value="category", produces = "application/json; charset=UTF-8")
+    @GetMapping(value = "category", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<CategoryDTO> findCategoryList() {
         System.out.println("JavaScript 내장 함수인 fetch");
@@ -102,7 +102,7 @@ public class MenuController {
     }
 
 
-//    삭제 테스트
+    // 삭제 테스트
     @PostMapping("/delete/{code}")
     public String deleteMenu(@PathVariable ("code") int code,
                             RedirectAttributes rAttr) {
