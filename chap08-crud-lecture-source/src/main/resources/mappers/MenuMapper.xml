@@ -55,7 +55,8 @@
         menu_code = #{code}
     </select>
 
-    <insert>
+    <insert id="registNewMenu" parameterType="com.ohgiraffers.crud.menu.model.dto.MenuDTO"
+            useGeneratedKeys="true" keyProperty="code">
         INSERT INTO
         tbl_menu
         (
