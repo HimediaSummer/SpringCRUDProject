@@ -95,6 +95,7 @@ public class MenuController {
         return "redirect:/menu/detail/" + menu.getCode();
     }
 
+
     @PostMapping("/delete/{code}")
     public String deleteMenu(@PathVariable("code") int code,
                              RedirectAttributes rAttr) {
