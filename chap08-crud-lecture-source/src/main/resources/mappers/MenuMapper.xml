@@ -84,7 +84,8 @@
         WHERE
         menu_code = #{code}
     </update>
-
+    
+    <!--test delete  -->
     <delete id="deleteMenu" parameterType="int">
         DELETE
         FROM
