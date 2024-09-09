@@ -25,6 +25,7 @@ public class MenuController {
     private final MenuService menuService;
     private final MessageSource messageSource;
 
+    @Autowired
     public MenuController(MenuService menuService, MessageSource messageSource) {
 
         this.menuService = menuService;
@@ -42,14 +43,18 @@ public class MenuController {
         return "menu/list";
     }
 
+    @GetMapping("regist")
     public void registPage() {}
 
+    @GetMapping(value="category", produces = "application/json; charset=UTF-8")
+    @ResponseBody
     public List<CategoryDTO> findCategoryList() {
         System.out.println("JavaScript 내장 함수인 fetch");
         return menuService.findAllCategory();
     }
 
-    public String registMenu() {
+    @PostMapping("regist")
+    public String registMenu(MenuDTO newMenu, RedirectAttributes rAttr, Locale locale) {
 
         menuService.registNewMenu(newMenu);
 
@@ -58,6 +63,7 @@ public class MenuController {
 //        rAttr.addFlashAttribute("successMessage", "신규 메뉴 등록에 성공하셨습니다.");
         rAttr.addFlashAttribute("successMessage", messageSource.getMessage("registMenu", null, locale));
 
+        return "redirect:/menu/list";
     }
 
     @GetMapping("/detail/{code}")
@@ -89,14 +95,17 @@ public class MenuController {
 
         rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 수정되었습니다.");
 
-        return "redirect:/menu/detail/" + menu.getCode();
+        return "redirect:/menu/detail" + menu.getCode();
     }
 
-    public String deleteMenu() {
+    @PostMapping("/delete/{code}")
+    public String deleteMenu(@PathVariable ("code") int code,
+                            RedirectAttributes rAttr) {
 
         menuService.deleteMenu(code);
 
         rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 삭제되었습니다.");
 
+        return "redirect:/menu/list";
     }
 }
