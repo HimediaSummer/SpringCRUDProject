@@ -32,6 +32,7 @@ public class MenuController {
 
     }
 
+    // 메뉴 리스트
     @GetMapping("/list")
     public String findMenuList(Model model) {
 
@@ -42,6 +43,7 @@ public class MenuController {
         return "menu/list";
     }
 
+    // 메뉴 리스트
     @GetMapping("regist")
     public void registPage() {}
 
