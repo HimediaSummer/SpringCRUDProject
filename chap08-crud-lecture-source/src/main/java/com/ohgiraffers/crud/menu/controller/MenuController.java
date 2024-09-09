@@ -102,7 +102,7 @@ public class MenuController {
     }
 
 
-//    test delete
+//    삭제 테스트
     @PostMapping("/delete/{code}")
     public String deleteMenu(@PathVariable ("code") int code,
                             RedirectAttributes rAttr) {
